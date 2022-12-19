@@ -51,7 +51,9 @@ function dataQuiz (arr){
  function checkResult() {
      setAnswerCheck(prev => !prev);
   }
-  
+  function calculateResult (quiz){
+      return quiz.filter(el => el.correct === el.answer).length
+  }
  function showAnswer(ob, el) {
     if(el === ob.correct) { return 'green' }
      else if(ob.correct !== ob.answer && ob.answer === el) {return 'pink' }
@@ -63,10 +65,10 @@ function dataQuiz (arr){
 
   { loading && <Loading /> }
   {!loading &&
-   <div> 
+   <div className='quiz-box'> 
      { quiz.map(ob => {
         return ( <form key={ob.questKey } >
-                  <p className='question'>&#127849; { ob.quest }</p>
+                  <p className='question'>&#127790; { ob.quest }</p>
                 <div className = "sub-container">
                 {ob.allAns.map((el, index) => {
                   return (
@@ -87,7 +89,9 @@ function dataQuiz (arr){
             )
          }) 
      } 
-     { answerCheck && <p>{`You scored ${quiz.filter(el => el.correct === el.answer).length }/${quiz.length} correct answers`}</p>}
+     { answerCheck && <h2>{`You scored ${calculateResult(quiz)}/${quiz.length} correct answers `}
+       { answerCheck &&  (calculateResult(quiz) / quiz.length) *100 >= 50  && <span>&#127774;</span> }
+       { answerCheck && (calculateResult(quiz) / quiz.length) *100 < 50  && <span>&#127772;</span> }</h2> }
      <Button buttonType = { answerCheck ? 'play':'result' }
              onClick = {answerCheck ? props.startQuiz : checkResult }
          >{answerCheck ? 'Play again':'Check answers'}</Button>

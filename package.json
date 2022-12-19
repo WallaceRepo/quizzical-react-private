@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "creator": "Sophia Wallace",
-  "homepage": "https://wallacerepo.github.io/quizzical-react",
+  "homepage": "https://WallaceRepo.github.io/quizzical-react",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
